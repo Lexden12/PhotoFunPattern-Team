@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="drawables_array">
+        <item>olivia_small</item>
+    </string-array>
+</resources>
