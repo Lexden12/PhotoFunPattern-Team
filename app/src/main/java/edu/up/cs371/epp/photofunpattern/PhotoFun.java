@@ -57,7 +57,7 @@ public class PhotoFun extends AppCompatActivity {
     */
     private class grayFilterButtonListener implements View.OnClickListener {
         public void onClick(View button) {
-            GrayFilter filter = new GrayFilter();
+            SmoothingFilter filter = new SmoothingFilter();
             myNewImageView.setImageBitmap(filter.apply(myOriginalBmp));
         }
     }

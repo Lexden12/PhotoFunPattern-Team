@@ -3,7 +3,7 @@ package edu.up.cs371.epp.photofunpattern;
 import android.graphics.Color;
 
 /**
- *  class GrayFilter changes the image manipulation behavior of its parent
+ *  class SmoothingFilter changes the image manipulation behavior of its parent
  *  PhotoFilter to convert the image to gray scale.
  *
  *  @author Edward C. Epp
@@ -11,7 +11,7 @@ import android.graphics.Color;
  *  https://github.com/edcepp/PhotoFunPattern
  */
 
-public class GrayFilter extends PhotoFilter {
+public class SmoothingFilter extends PhotoFilter {
 
     /*
     * tranformPixel This method overrides the transformPixel in the parent
