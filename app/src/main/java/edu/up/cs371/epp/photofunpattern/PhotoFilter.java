@@ -72,4 +72,5 @@ public abstract class PhotoFilter {
         }
         return newBmp;
     }
+
 }
