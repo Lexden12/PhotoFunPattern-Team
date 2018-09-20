@@ -1,5 +1,7 @@
 package edu.up.cs371.epp.photofunpattern;
 
+import android.content.res.TypedArray;
+import android.graphics.BitmapFactory;
 import android.support.v7.app.AppCompatActivity;
         import android.os.Bundle;
         import android.graphics.Bitmap;
@@ -12,6 +14,7 @@ import android.widget.ImageView;
         import android.view.View;
 import android.widget.Spinner;
 
+import java.util.ArrayList;
 import java.util.logging.Logger;
 
 /**
@@ -31,6 +34,9 @@ public class PhotoFun extends AppCompatActivity {
     private Bitmap myOriginalBmp;
     private ImageView myNewImageView;
     private Spinner drawablePicker;
+
+    private String[] myImageNames;
+    private ArrayList<Bitmap> myImageBmps;
 
     /*
     * onCreate This constructor lays out the user interface, initializes the
@@ -59,6 +65,12 @@ public class PhotoFun extends AppCompatActivity {
         brightnessFilterButton.setOnClickListener
                 (new brightnessFilterButtonListener());
 
+
+        myImageNames =
+                getResources().getStringArray(R.array.drawables_array);
+        initImageArray();
+
+
         drawablePicker = (Spinner) findViewById(R.id.drawableSpinner);
         ArrayAdapter<CharSequence> itemsAdapter = ArrayAdapter.createFromResource(this, R.array.drawables_array, android.R.layout.simple_spinner_item);
         itemsAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -67,23 +79,29 @@ public class PhotoFun extends AppCompatActivity {
 
     }
 
+    private void initImageArray (){
+        myImageBmps = new ArrayList<Bitmap>();
+        TypedArray imageIds =
+                getResources().obtainTypedArray(R.array.imageIdArray);
+
+        for (int i=0; i<myImageNames.length; i++) {
+            int id = imageIds.getResourceId(i, 0);
+            if (id == 0)
+                id = imageIds.getResourceId(0, 0);
+            Bitmap bmp =
+                    BitmapFactory.decodeResource(getResources(), id);
+            myImageBmps.add(bmp);
+        }
+    }
+
     private class drawablePickerClicked implements AdapterView.OnItemSelectedListener{
 
         public void onItemSelected(AdapterView<?> parent, View view, int pos, long id){
-           if (parent.getItemAtPosition(pos).toString() == "cheese"){
-               //finish BitmapDrawable constructors
-               originalDrawableBmp = new BitmapDrawable();
-           }
-           else if(parent.getItemAtPosition(pos).toString() == "edcepp"){
-
-           }
-           else if(parent.getItemAtPosition(pos).toString() == "two"){
-
-           }
-           else{
-
-           }
-           originalImageView.setImageBitmap(originalDrawableBmp.getBitmap());
+            originalImageView.setImageBitmap
+                    (myImageBmps.get(pos));
+            BitmapDrawable originalDrawableBmp =
+                    (BitmapDrawable) originalImageView.getDrawable();
+            myOriginalBmp = originalDrawableBmp.getBitmap();
         }
 
         public void onNothingSelected(AdapterView<?> parent){

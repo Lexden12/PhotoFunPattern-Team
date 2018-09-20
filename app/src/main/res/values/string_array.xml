@@ -6,4 +6,12 @@
         <item>edcepp</item>
         <item>two</item>
     </string-array>
+
+    <array name="imageIdArray">
+        <item>@drawable/olivia_small</item>
+        <item>@drawable/cheese</item>
+        <item>@drawable/edcepp</item>
+        <item>@drawable/two</item>
+    </array>
+
 </resources>
